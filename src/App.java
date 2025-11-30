@@ -11,7 +11,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         // App.singleton();
-        App.factoryMethod();
+        // App.factoryMethod();
+        App.abstractFactory();
     }
 
 
@@ -39,6 +40,8 @@ public class App {
         System.out.println(content);
     }
 
+    private static void abstractFactory(){
+    }
 }
 
 
