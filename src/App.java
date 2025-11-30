@@ -1,9 +1,8 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import creacionales.factoryMethod.ReportCsv;
-import creacionales.factoryMethod.ReportExcel;
-import creacionales.factoryMethod.ReportPdf;
+import creacionales.factoryMethod.exports.ExportReport;
+import creacionales.factoryMethod.exports.ExportReportFactory;
 import creacionales.singleton.Logger;
 
 
@@ -34,22 +33,10 @@ public class App {
         String reportType = "PDF";
         final String message = "This is the report content.";
 
-        String report;
+        ExportReport report = ExportReportFactory.getExporter(reportType);
+        String content = report.Export(message);
 
-        if(reportType == "PDF"){
-            ReportPdf pdf = new ReportPdf();
-            report = pdf.generate(message);
-        }else if(reportType == "Excel"){
-            ReportExcel excel = new ReportExcel();
-            report = excel.generate(message);
-        }else if(reportType == "CSV"){
-            ReportCsv csv = new ReportCsv();
-            report = csv.generate(message);
-        }else {
-            throw new RuntimeException("Report type not supported");
-        }
-
-        System.out.println(report);
+        System.out.println(content);
     }
 
 }
